@@ -20,8 +20,9 @@ $result = json_decode($response);
   <!-- Bootstrap -->
   <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
-  <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../vendors/font-awesome/web-fonts-with-css/css/fontawesome.min.css" rel="stylesheet">
   <!-- NProgress -->
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
   <!-- iCheck -->
   <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
@@ -190,7 +191,7 @@ $result = json_decode($response);
                                   ?>
                                   <tr>
                                     <td>
-                                      <label for="name">Course <span class="required">*</span></label>
+                                      <label for="courseid">Course <span class="required">*</span></label>
                                     </td>
                                     <td>
                                       <select name="course_id[]" class="form-control">
@@ -199,11 +200,20 @@ $result = json_decode($response);
                                     </td>
                                     <td>&nbsp;</td>
                                     <td>
-                                      <label for="name">Fee <span class="required">*</span></label>
+                                      <label for="feeamount">Fee <span class="required">*</span></label>
                                     </td>
                                     <td>
                                       <input id="name" class="form-control" data-validate-length-range="500" data-validate-words="1" name="fee_amount[]" required="required" value="<?php echo $course_fees->fee_amount?>" type="text">
                                     </td>
+                                    <?php if($result[0]->facility_hostel_available==1) { ?>
+                                    <td>
+                                      <label for="hostelfee">Hostel Fee <span class="required">*</span></label>
+                                    </td>
+                                    <td>
+                                      <input id="hostelfee" class="form-control" value="<?php echo $course_fees->hostel_fee?>" name="hostel_fee[]" required="required" type="text">
+                                    </td>                                
+                                    <?php } ?>
+
                                     <td>
                                       <button class="btn btn-danger remcourse">Remove</button>
                                     </td>
@@ -214,11 +224,11 @@ $result = json_decode($response);
                               ?>
                               <tr id="field-temp" style="display: none;">
                                 <td>
-                                  <label for="name">Course <span class="required">*</span></label>
+                                  <label for="courseid">Course <span class="required">*</span></label>
                                 </td>
                                 <td>
                                   <select name="course_id[]" class="form-control">
-                                      <option value="">Select course</option>
+                                    <option value="">Select course</option>
                                     <?php
                                     $chc = curl_init();  
                                     curl_setopt($chc,CURLOPT_URL, API_PATH.'courses?api_key=160e64f13691a2f59d34492dc238f98e');
@@ -237,11 +247,19 @@ $result = json_decode($response);
 
                                 <td>&nbsp;</td>
                                 <td>
-                                  <label for="name">Fee <span class="required">*</span></label>
+                                  <label for="coursefee">Course Fee <span class="required">*</span></label>
                                 </td>
                                 <td>
-                                  <input id="name" class="form-control" data-validate-length-range="500" data-validate-words="1" name="fee_amount[]" required="required" type="text">
+                                  <input id="coursefee" class="form-control" data-validate-length-range="500" data-validate-words="1" name="fee_amount[]" required="required" type="text">
                                 </td>
+                                <?php if($result[0]->facility_hostel_available==1) { ?>
+                                <td>
+                                  <label for="hostelfee">Hostel Fee <span class="required">*</span></label>
+                                </td>
+                                <td>
+                                  <input id="hostelfee" class="form-control" data-validate-length-range="500" data-validate-words="1" name="hostel_fee[]" required="required" type="text">
+                                </td>                                
+                                <?php } ?>
                                 <td>
                                   <button class="btn btn-danger remcourse">Remove</button>
                                 </td>

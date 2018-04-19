@@ -19,6 +19,12 @@
                   </ul>
                 </li>
                 <li></li>
+              <li><a><i class="fa fa-folder"></i> Admissions <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="manageAdmissions">Manage</a></li>
+                  </ul>
+                </li>
+                <li></li>
               </ul>
             </div>
             </div>
